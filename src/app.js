@@ -17,8 +17,7 @@ app.use( fileupload() )
 app.use( express.static( "files" ) )
 
 //routes
-app.get('/', (req, res) => { res.send('hello world')})
-app.use( '/api', require( './routes/index' ) )
+app.use( require( './routes/index' ) )
 app.use( '/api/client', require( './routes/client' ) )
 app.use( '/api/admin', require( './routes/admin' ) )
 app.use( '/api/business', require( './routes/business' ) )
