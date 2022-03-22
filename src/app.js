@@ -19,7 +19,7 @@ app.use( fileupload() )
 app.use( express.static( "files" ) )
 
 //routes
-app.use( require( './routes/index' ) )
+app.use( '/api', require( './routes/index' ) )
 app.use( '/api/client', require( './routes/client' ) )
 app.use( '/api/admin', require( './routes/admin' ) )
 app.use( '/api/business', require( './routes/business' ) )
