@@ -25,7 +25,8 @@ product.update = async ( _product, id ) => {
 }
 
 product.delete = async ( id ) => {
-    return await db.query( 'update producto set estado = "inactivo" where idProduct = ?', [ id ] )
+    const estado = "inactivo"
+    return await db.query( 'update producto set estado = ? where idProduct = ?', [ estado, id ] )
 }
 
 module.exports = product

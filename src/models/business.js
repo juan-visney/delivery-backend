@@ -3,7 +3,9 @@ const db = require( '../config/database' )
 const business = {}
 
 business.get = async () => {
-    return await db.query( 'select * from usuario where rol = "empresa" and estado = "activo"' )
+    const rol = "empresa"
+    const estado = "activo"
+    return await db.query( 'select * from usuario where rol = ? and estado = ?', [rol, estado] )
 }
 
 business.create = async ( business ) => {
@@ -11,7 +13,8 @@ business.create = async ( business ) => {
 }
 
 business.find = async ( id ) => {
-    return await db.query( 'select * from usuario where rol = "empresa" and idUser = ?', [ id ] )
+    const rol = "empresa"
+    return await db.query( 'select * from usuario where rol = ? and idUser = ?', [ rol, id ] )
 }
 
 business.update = async ( id, business ) => {
@@ -19,7 +22,8 @@ business.update = async ( id, business ) => {
 }
 
 business.delete = async ( id ) => {
-    return await db.query( 'update usuario set estado = "inactivo" where idUser = ?', [ id ] )
+    const estado = "inactivo"
+    return await db.query( 'update usuario set estado = ? where idUser = ?', [ estado, id ] )
 }
 
 module.exports = business

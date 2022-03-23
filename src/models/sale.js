@@ -3,7 +3,8 @@ const db = require( '../config/database' )
 const sale = {}
 
 sale.get = async () => {
-    return await db.query( 'select * from venta where estado = "espera"' )
+    const estado = "espera"
+    return await db.query( 'select * from venta where estado = ?', [ estado ] )
 }
 
 sale.create = async ( sale ) => {
@@ -15,7 +16,8 @@ sale.find = async ( id ) => {
 }
 
 sale.completed = async ( id, cost ) => {
-    return await db.query( 'update venta set estado = "completado", cost = ? where idSale = ?', [ cost, id ] )
+    const estado = "completado"
+    return await db.query( 'update venta set estado = ?, cost = ? where idSale = ?', [ estado, cost, id ] )
 }
 
 sale.delete = async ( id ) => {

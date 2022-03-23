@@ -3,7 +3,9 @@ const db = require( '../config/database' )
 const client = {}
 
 client.get = async () => {
-    return await db.query( 'select * from usuario where rol = "cliente" and estado = "activo"' )
+    const rol = "cliente"
+    const estado = "activo"
+    return await db.query( 'select * from usuario where rol = ? and estado = ?', [ rol, estado ] )
 }
 
 client.create = async ( client ) => {
@@ -11,7 +13,8 @@ client.create = async ( client ) => {
 }
 
 client.find = async ( id ) => {
-    return await db.query( 'select * from usuario where rol = "cliente" and idUser = ?', [ id ] )
+    const rol = "cliente"
+    return await db.query( 'select * from usuario where rol = ? and idUser = ?', [ rol, id ] )
 }
 
 client.update = async ( id, client ) => {
@@ -19,7 +22,8 @@ client.update = async ( id, client ) => {
 }
 
 client.delete = async ( id ) => {
-    return await db.query( 'update usuario set estado = "inactivo" where idUser = ?', [ id ] )
+    const estado = "inactivo"
+    return await db.query( 'update usuario set estado = ? where idUser = ?', [ estado, id ] )
 }
 
 module.exports = client
