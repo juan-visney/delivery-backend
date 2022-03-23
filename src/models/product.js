@@ -3,7 +3,8 @@ const db = require( '../config/database' )
 const product = {}
 
 product.get = async () => {
-    return await db.query( 'select * from producto where estado = "activo"' )
+    const estado = 'activo'
+    return await db.query( 'select * from producto where estado = ?', [estado] )
 }
 
 product.create = async ( _product ) => {
@@ -11,7 +12,8 @@ product.create = async ( _product ) => {
 }
 
 product.getByBusiness = async ( id ) => {
-    return await db.query( 'select * from producto where estado = "activo" and idBusiness = ?', [ id ] )
+    const estado = 'activo'
+    return await db.query( 'select * from producto where estado = ? and idBusiness = ?', [ estado, id ] )
 }
 
 product.find = async ( id ) => {
