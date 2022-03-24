@@ -1,6 +1,7 @@
 const client = require( '../models/client' )
 const jwt = require( 'jsonwebtoken' )
 const path = require( 'path' )
+const { uploadImage } = require( '../controllers/imageController' )
 
 const controller = {}
 
@@ -20,6 +21,7 @@ controller.createClient = async ( req, res ) => {
     jwt.sign( { user }, 'secretkey', { expiresIn: '1h' }, ( err, token ) => {
         res.json( { token } )
     } )
+
 }
 
 controller.updateClient = async ( req, res ) => {

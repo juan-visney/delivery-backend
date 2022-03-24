@@ -1,13 +1,12 @@
-const env = require( 'dotenv' )
-env.config()
+require( './config' )
 
 module.exports = {
     database: {
-        host: process.env.DATABASE_HOST || 'db-mysql-do-user-11056291-0.b.db.ondigitalocean.com',
-        user: process.env.DATABASE_USER || 'jvcode',
-        password: process.env.DATABASE_PASSWORD || 'qNqDPnwJ0yzhrjUx',
-        database: process.env.DATABASE_NAME || 'delivery',
-        port: process.env.DATABASE_PORT || '25060'
+        host: process.env.DATABASE_HOST,
+        user: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE_NAME,
+        port: process.env.DATABASE_PORT
     },
-    port: process.env.PORT || 4000
+    port: process.env.PORT
 }

@@ -15,10 +15,14 @@ app.set( 'port', port )
 //middleware
 app.use( cors() )
 app.use( express.json() )
-app.use( fileupload() )
+app.use( fileupload( {
+  tempFileDir: '/temp'
+} ) )
 app.use( express.static( "files" ) )
 
 //routes
+app.use( '/api/user', require( './routes/user' ) )
+app.use( '/api/images', require( './routes/images' ) )
 app.use( '/api', require( './routes/index' ) )
 app.use( '/api/client', require( './routes/client' ) )
 app.use( '/api/admin', require( './routes/admin' ) )

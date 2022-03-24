@@ -6,8 +6,8 @@ const controller = {}
 controller.login = async ( req, res ) => {
     const user = await users.find( req.body.user, req.body.pass )
     if ( user[ 0 ] ) {
-        jwt.sign( { user }, 'secretkey', { expiresIn: '1h' }, ( err, token ) => {
-            res.json( { token, user: user[ 0 ].user, rol: user[ 0 ].rol, name: user[ 0 ].name } )
+        jwt.sign( { user }, 'secretkey', { expiresIn: '2h' }, ( err, token ) => {
+            res.json( { token, id: user[ 0 ].idUser, user: user[ 0 ].user, rol: user[ 0 ].rol, photo: user[ 0 ].photo, name: user[ 0 ].name } )
         } )
     }
     else
@@ -23,6 +23,7 @@ controller.posts = async ( req, res ) => {
             authData.id = authData.user[ 0 ].idUser
             authData.rol = authData.user[ 0 ].rol
             authData.name = authData.user[ 0 ].name
+            authData.photo = authData.user[ 0 ].photo
             authData.user = authData.user[ 0 ].user
             res.json( {
                 authData
@@ -42,4 +43,5 @@ controller.verifyToken = ( req, res, next ) => {
         res.sendStatus( 403 )
     }
 }
+
 module.exports = controller
